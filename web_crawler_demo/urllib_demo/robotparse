@@ -1,0 +1,10 @@
+from urllib.robotparser import RobotFileParser
+from urllib.request import urlopen
+
+# 解析robot.txt
+rp = RobotFileParser()
+# rp.set_url('https://www.jianshu.com/robots.txt')
+# rp.read()
+rp.parse(urlopen('https://www.jianshu.com/robots.txt').read().decode('utf-8').split('\n'))
+print(rp.can_fetch('*', 'https://www.jianshu.com/p/758e8bd48308'))
+print(rp.can_fetch('*', "https://www.jianshu.com/serach?q=python&page=1&type=collections"))
