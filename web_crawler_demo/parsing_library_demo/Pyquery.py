@@ -71,4 +71,67 @@ print(type(lis))
 for li in lis:
     print(li, type(li))
 
+print()
+print('5.获取信息')
+print('5.1 获取属性')
+a = doc('.item-0.active a')
+print(a, type(a))
+print(a.attr('href'))
+print(a.attr.href)
 
+a = doc('a')
+print(a, type(a))
+print(a.attr('href'))   #多个节点，只会得到第一个节点的属性
+print(a.attr.href)
+for item in a.items():
+    print(item.attr('href'))
+print()
+print('5.2 获取文本')
+a = doc('.item-0.active a')
+print(a)
+print(a.text())
+li = doc('.item-0.active')
+print(li)
+print(li.html())
+
+li = doc('li')          #选中多个节点
+print(li.html(), type(li.html())) #返回第一个节点的html文本
+print(li.text(), type(li.text())) #返回所有文本组成的字符串
+
+print('6.节点操作')
+print('addClass removeClass')
+li = doc('.item-0.active')
+print(li)
+li.remove_class('active')
+print(li)
+li.add_class('active')
+print(li)
+
+print('attr text html')
+html = '''
+<ul>
+<li class="item-0 active"><a href="link3.html"><span class="bold">third item</span></a></li>
+</ul>
+'''
+doc = pq(html)
+li = doc('.item-0.active')
+print(li)
+li.attr('name', 'tql')
+print(li)
+li.text('stay hungry')
+print(li)
+li.html('<span><changed item</span>')
+print(li)
+
+print('remove')
+html = '''
+<div class="wrap">
+    Hello, World
+<p>This is a paragraph</p>
+</div>
+'''
+doc = pq(html)
+wrap = doc('.wrap')
+print(wrap.text())
+wrap.find('p').remove()
+print(wrap.text())
