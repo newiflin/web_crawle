@@ -39,4 +39,9 @@ target = browser.find_element_by_css_selector('#droppable')
 actions = ActionChains(browser)
 actions.drag_and_drop(source, target)
 actions.perform()
+# 执行javascript  -- 下拉滚动条
+browser = webdriver.Chrome()
+browser.get('https://www.zhihu.com/explore')
+browser.execute_script('window.scrollTo(0, document.body.scrollHeight)')
+browser.execute_script('alert("To Bottom")')
 
